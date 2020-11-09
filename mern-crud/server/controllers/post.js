@@ -3,7 +3,7 @@ const slugify = require("slugify");
 
 exports.create = (req, res) => {
   // console.log(req.body);
-  const { title, content, user } = req.body;
+  const { title, content, user } = req.body; //req.params
   const slug = slugify(title);
   // validate
   switch (true) {
@@ -32,4 +32,13 @@ exports.list = (req, res) => {
       if (err) console.log(err);
       res.json(posts);
     });
+};
+
+exports.read = (req, res) => {
+  const { slug } = req.params;
+  console.log(slug);
+  Post.findOne({ slug: slug }).exec((err, posts) => {
+    if (err) console.log(err);
+    res.json(posts);
+  });
 };

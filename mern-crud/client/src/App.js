@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Nav from "./Nav";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const App = () => {
   const [posts, setPosts] = useState([]);
@@ -33,15 +34,32 @@ const App = () => {
           style={{ borderBottom: "1px solid silver" }}
         >
           <div className="col pt-3 pb-2">
-            <h2>{post.title}</h2>
-            <p className="lead">{post.content.substring(0, 100)}</p>
-            <p>
-              Author<span className="badge">{post.user}</span>
-              Published on{" "}
-              <span className="badge">
-                {new Date(post.createdAt).toLocaleString()}
-              </span>
-            </p>
+            <div className="row">
+              <div className="col-md-10">
+                <Link to={`/post/${post.slug}`}>
+                  <h2>{post.title}</h2>
+                </Link>
+                <p className="lead">{post.content.substring(0, 100)}</p>
+                <p>
+                  Author<span className="badge">{post.user}</span>
+                  Published on{" "}
+                  <span className="badge">
+                    {new Date(post.createdAt).toLocaleString()}
+                  </span>
+                </p>
+              </div>
+              <div className="col-md-2">
+                <Link
+                  to={`/post/update/${post.slug}`}
+                  className="btn btn-sm btn-outline-warning"
+                >
+                  Update
+                </Link>
+                <button className="btn btn-sm btn-outline-danger ml-1">
+                  Delete
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       ))}
