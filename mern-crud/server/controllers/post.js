@@ -42,3 +42,24 @@ exports.read = (req, res) => {
     res.json(posts);
   });
 };
+
+exports.update = (req, res) => {
+  const { slug } = req.params;
+  const { title, content, user } = req.body;
+  Post.findOneAndUpdate({ slug }, { title, content, user }, { new: true }).exec(
+    (err, post) => {
+      if (err) console.log(err);
+      res.json(post);
+    }
+  ); //new:true returns the updated content;
+};
+
+exports.remove = (req, res) => {
+  const { slug } = req.params;
+  Post.findOneAndRemove({ slug }).exec((err, posts) => {
+    if (err) console.log(err);
+    res.json({
+      message: "Post deleted",
+    });
+  });
+};
