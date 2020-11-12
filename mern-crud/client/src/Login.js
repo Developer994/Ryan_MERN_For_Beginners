@@ -20,19 +20,17 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.table({ name, password });
-    // axios
-    //   .post(`${process.env.REACT_APP_API}/`, { title, content, user })
-    //   .then((response) => {
-    //     console.log(response);
-    //     // empty the state
-    //     setState({ ...state, title: "", content: "", user: "" });
-    //     // show success alert
-    //     alert(`Post titled ${response.data.title} is created`);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error.response);
-    //     alert(error.response.data.error);
-    //   });
+    axios
+      .post(`${process.env.REACT_APP_API}/login`, { name, password })
+      .then((response) => {
+        console.log(response);
+        // response will contain token and name
+        // redirect to create page
+      })
+      .catch((error) => {
+        console.log(error.response);
+        alert(error.response.data.error);
+      });
   };
 
   return (
