@@ -37,7 +37,7 @@ export const getUser = () => {
 export const logout = (callback) => {
   if (window !== "undefined") {
     sessionStorage.removeItem("token");
-    sessionStorage.setItem("user");
+    sessionStorage.removeItem("user");
   }
   callback();
 };
