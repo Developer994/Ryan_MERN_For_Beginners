@@ -12,7 +12,6 @@ export const authenticate = (response, callback) => {
 // access token name from session storage
 export const getToken = () => {
   if (window !== "undefined") {
-    // if unsure of what to put for response, do the following on console:
     if (sessionStorage.getItem("token")) {
       return JSON.parse(sessionStorage.getItem("token"));
     } else {
@@ -24,7 +23,6 @@ export const getToken = () => {
 // access user name from session storage
 export const getUser = () => {
   if (window !== "undefined") {
-    // if unsure of what to put for response, do the following on console:
     if (sessionStorage.getItem("user")) {
       return JSON.parse(sessionStorage.getItem("user"));
     } else {
