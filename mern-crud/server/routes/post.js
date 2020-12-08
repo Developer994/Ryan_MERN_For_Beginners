@@ -13,10 +13,10 @@ router.get("/post/:slug", read); //req.params.slug
 router.put("/post/:slug", requireSignin, update);
 router.delete("/post/:slug", requireSignin, remove); // We used the word remove instead of delete because delete is a reserved keyword in javascript.
 
-router.get("/secret", requireSignin, (req, res) => {
-  res.json({
-    data: req.user.name,
-  });
-});
+// router.get("/secret", requireSignin, (req, res) => {
+//   res.json({
+//     data: req.user.name,
+//   });
+// });
 
 module.exports = router;
